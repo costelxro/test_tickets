@@ -15,12 +15,20 @@ class Ticket extends Model
         'content',
         'user_name',
         'user_email',
+        'priority',
         'status',
-        'created_at'
+        'processed_at',
+        'user_id'
     ];
 
     protected $casts = [
         'status' => 'boolean',
         'processed_at' => 'datetime',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

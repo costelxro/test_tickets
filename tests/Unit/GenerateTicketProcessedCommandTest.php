@@ -1,4 +1,7 @@
 <?php
+
+namespace Tests\Unit;
+
 use App\Models\Ticket;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -6,6 +9,7 @@ use Tests\TestCase;
 class GenerateTicketProcessedCommandTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * A basic feature test example.
      */
@@ -15,7 +19,7 @@ class GenerateTicketProcessedCommandTest extends TestCase
 
         $this->artisan('tickets:generate_processed')
             ->expectsOutputToContain('Generate ticket processed')
-        ->assertExitCode(0);
+            ->assertExitCode(0);
 
         $this->assertEquals(1, Ticket::count());
         $ticket = Ticket::first();

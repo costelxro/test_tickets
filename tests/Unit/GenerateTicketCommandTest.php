@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Feature;
+namespace Tests\Unit;
 
 use App\Models\Ticket;
 use Illuminate\Foundation\Testing\RefreshDatabase;

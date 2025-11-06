@@ -17,8 +17,13 @@ return new class extends Migration
             $table->text('content');
             $table->string('user_name');
             $table->string('user_email')->index();
+            $table->enum('priority', [1,2,3,4,5])->default(1)->nullable();
             $table->boolean('status')->default(false)->index();
             $table->timestamp('processed_at')->nullable();
+            $table->unsignedBigInteger('user_id');
+
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }

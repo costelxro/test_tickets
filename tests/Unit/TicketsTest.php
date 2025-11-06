@@ -1,10 +1,9 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
 use App\Models\Ticket;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class TicketsTest extends TestCase
@@ -32,7 +31,7 @@ class TicketsTest extends TestCase
         $res->assertJsonCount(2, 'data');
     }
 
-    public function test_close(): void
+    public function test_closed(): void
     {
         Ticket::factory()->count(2)->create(['status' => false]);
 
@@ -42,7 +41,7 @@ class TicketsTest extends TestCase
         $res->assertJsonCount(2, 'data');
     }
 
-    public function test_user_ticket(): void
+    public function test_user_tickets(): void
     {
         $user_email = 'test_user@test.test';
 
@@ -53,6 +52,16 @@ class TicketsTest extends TestCase
         $res->assertOk();
         $res->assertJsonCount(1, 'data');
     }
+
+//    public function test_priority():void
+//    {
+//        Ticket::factory()->count(10)->create(['priority' => 5]);
+//
+//        $res = $this->getJson('/tickets/priority/5');
+//
+//
+//
+//    }
 
     public function test_stats(): void
     {

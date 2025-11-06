@@ -17,6 +17,7 @@ class TicketFactory extends Factory
             'content' => fake()->text(),
             'user_name' => fake()->name(),
             'user_email' => fake()->email(),
+            'priority' => fake()->numberBetween(1, 5),
             'status' => fake()->boolean(),
         ];
     }
