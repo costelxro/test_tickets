@@ -14,7 +14,7 @@ class TicketsTest extends TestCase
      */
     public function test_index(): void
     {
-        Ticket::factory()->count(20)->create(); // note: ->count(20), not factory(20)
+        Ticket::factory()->count(20)->create();
         $res = $this->getJson('/tickets');
         $res->assertOk()
             ->assertJsonStructure(['data','links'])
@@ -23,22 +23,22 @@ class TicketsTest extends TestCase
 
     public function test_open(): void
     {
-        Ticket::factory()->count(2)->create(['status' => true]);
+        Ticket::factory()->count(10)->create(['status' => true]);
 
         $res = $this->getJson('/tickets/open');
 
         $res->assertOk();
-        $res->assertJsonCount(2, 'data');
+        $res->assertJsonCount(10, 'data');
     }
 
     public function test_closed(): void
     {
-        Ticket::factory()->count(2)->create(['status' => false]);
+        Ticket::factory()->count(10)->create(['status' => false]);
 
         $res = $this->getJson('/tickets/close');
 
         $res->assertOk();
-        $res->assertJsonCount(2, 'data');
+        $res->assertJsonCount(10, 'data');
     }
 
     public function test_user_tickets(): void
@@ -52,16 +52,6 @@ class TicketsTest extends TestCase
         $res->assertOk();
         $res->assertJsonCount(1, 'data');
     }
-
-//    public function test_priority():void
-//    {
-//        Ticket::factory()->count(10)->create(['priority' => 5]);
-//
-//        $res = $this->getJson('/tickets/priority/5');
-//
-//
-//
-//    }
 
     public function test_stats(): void
     {

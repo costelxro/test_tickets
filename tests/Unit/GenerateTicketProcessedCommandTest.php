@@ -28,6 +28,8 @@ class GenerateTicketProcessedCommandTest extends TestCase
         $this->assertNotEmpty($ticket->content);
         $this->assertNotEmpty($ticket->user_name);
         $this->assertNotEmpty($ticket->user_email);
+        $this->assertNotEmpty($ticket->priority);
+        $this->assertNotEmpty($ticket->user_id);
         $this->assertTrue($ticket->status);
 
     }

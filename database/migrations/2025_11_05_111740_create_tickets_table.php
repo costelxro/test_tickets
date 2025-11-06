@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('priority', [1,2,3,4,5])->default(1)->nullable();
             $table->boolean('status')->default(false)->index();
             $table->timestamp('processed_at')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users');
 

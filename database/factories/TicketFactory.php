@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Ticket;
 use Illuminate\Support\Facades\Hash;
@@ -19,6 +20,7 @@ class TicketFactory extends Factory
             'user_email' => fake()->email(),
             'priority' => fake()->numberBetween(1, 5),
             'status' => fake()->boolean(),
+            'user_id' => User::factory(),
         ];
     }
 }

@@ -19,7 +19,7 @@ class TicketController extends Controller
     public function open(Request $request): JsonResponse
     {
         $request->validate(['per_page' => 'integer|min:1|max:50']);
-        $open_tickets = Ticket::where('status', false)->orderByDesc('created_at')
+        $open_tickets = Ticket::where('status', true)->orderByDesc('created_at')
             ->paginate($request->integer('per_page', 10));
         return response()->json($open_tickets);
 
@@ -28,7 +28,7 @@ class TicketController extends Controller
     public function closed(Request $request) : JsonResponse
     {
         $request->validate(['per_page' => 'integer|min:1|max:50']);
-        $closed_tickets = Ticket::where('status', true)->orderByDesc('created_at')
+        $closed_tickets = Ticket::where('status', false)->orderByDesc('created_at')
             ->paginate($request->integer('per_page', 10));
         return response()->json($closed_tickets);
     }
